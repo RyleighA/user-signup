@@ -33,11 +33,11 @@ def email_check(email):
     char1 = email.count('@')
     char2 = email.count('.')
 
-    if char1 is not "1":
+    if char1 is not 1:
         error6 = "Invalid email"
         return error6
 
-    if char2 is not "1":
+    if char2 is not 1:
         error6 = "Invalid email"
         return error6
 
@@ -79,13 +79,14 @@ def submit():
     if v_password == "":
         error3 = "Please verify your password"
 
-    if password == v_password:
-        error5 = ""
-    else:
+    if password != v_password:
         error5 = "Passwords do not match"
 
     if error1 and error2 and error3:
         return redirect("/?error=1")
+
+    if error2 and error3 and error4:
+        return redirect("/?error=0")
     
     if error1 and error2:
         return redirect("/?error=2")
@@ -112,10 +113,10 @@ def submit():
         return redirect("/?error=9&" + "username=" + username)
 
     if error5:
-        return redirect("/?error=10&" + "username=" + username)
+        return redirect("/?error=A&" + "username=" + username)
 
     if error6:
-        return redirect("/?error=11&" + "username=" + username)
+        return redirect("/?error=B&" + "username=" + username)
     
     return render_template('submit.html', username=username)
 
@@ -130,6 +131,9 @@ def index():
     error4 = "Invalid username/password"
     error5 = "Passwords do not match"
     error6 = "Invalid email"
+
+    if error_check is "0":
+        return render_template("mainpage.html", error2=error2, error3=error3, error4=error4)
 
     if error_check is "1":
         return render_template("mainpage.html", error1=error1, error2=error2, error3=error3)
@@ -158,10 +162,10 @@ def index():
     if error_check is "9":
         return render_template("mainpage.html", error3=error3, username=username)
 
-    if error_check is "10":
+    if error_check is "A":
         return render_template("mainpage.html", error5=error5, username=username)
 
-    if error_check is "11":
+    if error_check is "B":
         return render_template("mainpage.html", error6=error6, username=username)
 
     return render_template("mainpage.html")

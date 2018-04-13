@@ -6,9 +6,9 @@
             <form action="/submit" method="POST">
                 <table>
                 <tbody>
-                <tr><td>Username</td><td><input type="username" name='username' placeholder="Username" value="{{username}}" /></td><td>{% if error1 == "Please enter a username" %}<p>{{error1}}</p>{% endif %}</td></tr>
-                <tr><td>Password</td><td><input type="password" name="password" /></td><td>{% if error2 == "Please enter a password" %}<p>{{error2}}</p>{% endif %} {% if error5 != "" %}<p>{{error5}}</p>{% endif %}</td></tr></br>
-                <tr><td>Verify Password</td><td><input type="password" name="v_password" /></td><td>{% if error3 == "Please verify your password" %}<p>{{error3}}</p>{% endif %}</td></tr></br>
+                <tr><td>Username</td><td><input type="username" name='username' placeholder="Username" value="{{username}}" /></td><td>{% if error1 %}<p>{{error1}}</p>{% endif %}</td></tr>
+                <tr><td>Password</td><td><input type="password" name="password" /></td><td>{% if error2 %}<p>{{error2}}</p>{% endif %} {% if error5 %}<p>{{error5}}</p>{% endif %}</td></tr></br>
+                <tr><td>Verify Password</td><td><input type="password" name="v_password" /></td><td>{% if error3 %}<p>{{error3}}</p>{% endif %}</td></tr></br>
                 <tr><td>Email (optional)</td><td><input type="text" name="email" /></td><td>{% if error6 %}<p>{{error6}}</p>{% endif %}</td></tr></br>
                 <tr><td><input type="submit" name="submit" /></td></tr>
                 </tbody>
