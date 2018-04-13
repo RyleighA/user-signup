@@ -82,6 +82,9 @@ def submit():
     if password != v_password:
         error5 = "Passwords do not match"
 
+    if error4 and error6:
+        return redirect("/?error=C")
+
     if error1 and error2 and error3:
         return redirect("/?error=1")
 
@@ -131,6 +134,9 @@ def index():
     error4 = "Invalid username/password"
     error5 = "Passwords do not match"
     error6 = "Invalid email"
+
+    if error_check is "C":
+        return render_template("mainpage.html", error4=error4, error6=error6)
 
     if error_check is "0":
         return render_template("mainpage.html", error2=error2, error3=error3, error4=error4)
